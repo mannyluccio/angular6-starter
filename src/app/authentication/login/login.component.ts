@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../shared/services/authentication.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-login',
@@ -8,11 +9,25 @@ import {AuthService} from '../../shared/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+    public model = {
+        email: '',
+        password: '',
+    };
     constructor(private authService: AuthService) {
+
     }
 
     ngOnInit() {
-        this.authService.login().subscribe(
+
+    }
+
+    login(f: any) {
+        if (f.invalid) {
+            return;
+        }
+
+        // stop here if form is invalid
+        this.authService.login({email: this.model.email, password: this.model.password}).subscribe(
             data => {
                 console.log('success ', data);
             },

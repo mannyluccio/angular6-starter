@@ -10,8 +10,8 @@ export class AuthService {
 
   constructor(private httpClient: ApplicationHttpClient) { }
 
-  login(): Observable<any> {
+  login(payload: any): Observable<any> {
 
-    return this.httpClient.Post( 'login',{ username: 'a', ass: 'b'});
+    return this.httpClient.Post( 'auth/login', payload);
   }
 }

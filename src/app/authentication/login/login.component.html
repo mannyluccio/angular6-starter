@@ -1,15 +1,28 @@
-<form class="form-signin">
-  <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Password">
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-</form>
+<div class="login-wrapper">
+  <form (ngSubmit)="login(f)" #f="ngForm" novalidate class="form-signin">
+    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched || f.submitted)}" [(ngModel)]="model.email" #email="ngModel" class="form-control" placeholder="Email"
+             required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched || f.submitted)"
+           class="invalid-feedback" >
+        Email is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Password</label>
+      <input id="password" name="password" type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched || f.submitted)}" [(ngModel)]="model.password" #password="ngModel" class="form-control" placeholder="Password"
+             required>
+      <div *ngIf="password.invalid && (password.dirty || password.touched || f.submitted)"
+           class="invalid-feedback" >
+        Password is required
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+</div>
+
 
